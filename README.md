@@ -44,7 +44,7 @@ Application Web permettant l'application des tests d'intrusion.
     django-admin startapp <appName>
 ```
 
-9.  Install mysqlclient package (mysql connector)
+9.  Install mysqlclient package (mysql connector), it will be used by django to connect to mysql server
 ```py
 pip install mysqlclient
 ```
