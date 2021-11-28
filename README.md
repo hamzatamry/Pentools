@@ -43,6 +43,34 @@ Application Web permettant l'application des tests d'intrusion.
 ```
     django-admin startapp <appName>
 ```
+
+8. Add API to INSTALLED_APPS in settings.py 
+```py
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'API'
+]
+```
+
+8.  Change Database configuration in settings.py
+```py
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': '<DB_NAME>',
+        'USER': '<DB_USER>',
+        'PASSWORD': '<DB_PASSWORD>',
+        'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
+        'PORT': '3306',
+    }
+}
+```
+
 9. run this command to migrate modifications and installations to database
 ```
     python manage.py migrate 
