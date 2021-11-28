@@ -44,7 +44,12 @@ Application Web permettant l'application des tests d'intrusion.
     django-admin startapp <appName>
 ```
 
-8. Add API to INSTALLED_APPS in settings.py 
+9.  Install mysqlclient package (mysql connector)
+```py
+pip install mysqlclient
+```
+
+10. Add API to INSTALLED_APPS in settings.py 
 ```py
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -57,7 +62,7 @@ INSTALLED_APPS = [
 ]
 ```
 
-8.  Change Database configuration in settings.py
+11.  Change Database configuration in settings.py
 ```py
 DATABASES = {
     'default': {
@@ -71,20 +76,20 @@ DATABASES = {
 }
 ```
 
-9. run this command to migrate modifications and installations to database
+12. run this command to migrate modifications and installations to database
 ```
     python manage.py migrate 
 ```
-10. To see what is in our database as an administrator, we can create a user admin with this command
+13. To see what is in our database as an administrator, we can create a user admin with this command
 ```
     python manage.py createsuperuser
 ```
-11. create a Model in model.py then run these two commands
+14. create a Model in model.py then run these two commands
 ```
     python manage.py makemigrations
     python manage.py migrate
 ```
-12. add these two lines of code to admins.py where model is the name of the Model 
+15. add these two lines of code to admins.py where model is the name of the Model 
 ```py
     from .models import Model
     admin.site.register(Model)
