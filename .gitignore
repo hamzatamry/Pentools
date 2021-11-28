@@ -1,0 +1,10 @@
+#   Environement Virtuel
+venv/*
+
+#   SQLlite test database
+db.sqlite3
+
+manage.py
+
+#   Pycharm
+.idea/*
