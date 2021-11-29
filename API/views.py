@@ -1,12 +1,22 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.views import View
 
 
-# Create your views here.
+class Registration(View):
 
-def register(request):
-    return HttpResponse("<h1>Registration</h1>")
+    def get(self, request, *args, **kwargs):
+        #   Render Template
+        return render(request, 'index.html')
 
+    def post(self, request, *args, **kwargs):
+        print(request.method)
+        #   Registration
+        return HttpResponse("<h1>POST /register/</h1>")
 
-def authenticate(request):
-    return HttpResponse("<h1>Authentication</h1>")
+    def put(self, request, *args, **kwargs):
+        return HttpResponse("<h1>PUT is NOT ALLOWED /register/</h1>")
+
+    def delete(self, request, *args, **kwargs):
+        return HttpResponse("<h1>DELETE is NOT ALLOWED /register/</h1>")
+
