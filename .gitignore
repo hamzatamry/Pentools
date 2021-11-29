@@ -8,3 +8,9 @@ manage.py
 
 #   Pycharm
 .idea/*
+
+#   pycache folder and other py files
+__pycache__/
+__init__.py
+asgi.py
+wsgi.py
