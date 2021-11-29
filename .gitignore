@@ -12,5 +12,6 @@ manage.py
 #   pycache folder and other py files
 __pycache__/
 __init__.py
+API/migrations/
 asgi.py
 wsgi.py
