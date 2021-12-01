@@ -6,7 +6,6 @@ from django.views import View
 class Registration(View):
 
     def get(self, request, *args, **kwargs):
-        #   Render Template
         return render(request, 'index.html')
 
     def post(self, request, *args, **kwargs):

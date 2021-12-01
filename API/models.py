@@ -11,7 +11,6 @@ class ScanResult(models.Model):
     scan_result_id = models.AutoField(primary_key=True)
     scan_result_file = models.FileField(upload_to='uploads/', default='')
 
-
 class Target(models.Model):
     target_id = models.AutoField(primary_key=True)
     target_url = models.URLField(max_length=200, default='')
