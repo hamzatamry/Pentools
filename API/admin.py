@@ -5,7 +5,6 @@ admin.site.register(Scan)
 admin.site.register(ScanResult)
 admin.site.register(Target)
 admin.site.register(PentestTool)
-admin.site.register(EnumerationCategory)
-admin.site.register(ActiveReconCategory)
-admin.site.register(PassiveReconCategory)
+admin.site.register(Category)
+
 
