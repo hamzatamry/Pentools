@@ -15,3 +15,5 @@ API/migrations/
 asgi.py
 wsgi.py
 
+templates/
+
