@@ -60,7 +60,14 @@ body {
   line-height: 1.5;
   color: #212529;
   text-align: left;
-  background-color: rgb(237, 237, 237); }
+  background-color: rgb(230,230,230);
+  font-family: "Poppins", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.8;
+  font-weight: normal;
+  /*background: #fafafa;*/
+  /*color: gray;*/
+  }
 
 [tabindex="-1"]:focus {
   outline: 0 !important; }
@@ -8135,14 +8142,6 @@ a.text-dark:hover, a.text-dark:focus {
     color: inherit;
     border-color: #dee2e6; } }
 
-body {
-  font-family: "Poppins", Arial, sans-serif;
-  font-size: 16px;
-  line-height: 1.8;
-  font-weight: normal;
-  background: #fafafa;
-  /*color: gray;*/ }
-
 a {
   -webkit-transition: .3s all ease;
   -o-transition: .3s all ease;
@@ -8357,11 +8356,8 @@ h1, h2, h3, h4, h5,
 
 /* form styles */
 #tool-form {
-    margin : 100px;
-    border-style : solid;
-    padding: 3px;
-	border: 1px ;
-	border-color: black;
+    margin : 80px;
+    margin-left : 10%;
 }
 .instruction {
     margin : 10px;
@@ -8382,8 +8378,8 @@ h1, h2, h3, h4, h5,
     box-sizing: border-box;
     line-height: 1.5;
     -moz-appearance: none;
-    -webkit-appearance: none;
-    appearance: none;
+    /*-webkit-appearance: none;*/
+    /*appearance: none;*/
     background: #fff url(../images/select-arrow.png) no-repeat;
     background-position: center right calc(4.75rem / 4);
     border-radius: 5px;

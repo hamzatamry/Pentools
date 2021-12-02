@@ -19,7 +19,10 @@
 	<!--end of Navigation bar-->
 
 	<div id="tool-form">
-		{% include tool_used %}
+		<h1>{{ tool_used|capfirst }}</h1>
+		{% with tool_used|add:".html" as template %}
+		{% include template %}
+		{% endwith %}
 	</div>
 
 

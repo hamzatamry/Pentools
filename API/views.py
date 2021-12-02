@@ -23,37 +23,37 @@ def login(request):
 
 
 def nmap(request):
-    variables_dict["tool_used"] = "nmap.html"
+    variables_dict["tool_used"] = "nmap"
     variables_dict.update({})
     return render(request, 'tool.html', context=variables_dict)
 
 
 def hydra(request):
-    variables_dict["tool_used"] = "hydra.html"
+    variables_dict["tool_used"] = "hydra"
     variables_dict.update({})
     return render(request, 'tool.html', context=variables_dict)
 
 
 def sherlock(request):
-    variables_dict["tool_used"] = "sherlockhtml"
+    variables_dict["tool_used"] = "sherlock"
     variables_dict.update({})
     return render(request, 'tool.html', context=variables_dict)
 
 
 def theharvester(request):
-    variables_dict["tool_used"] = "theharvester.html"
+    variables_dict["tool_used"] = "theharvester"
     variables_dict.update({})
     return render(request, 'tool.html', context=variables_dict)
 
 
 def gobuster(request):
-    variables_dict["tool_used"] = "gobuster.html"
+    variables_dict["tool_used"] = "gobuster"
     variables_dict.update({})
     return render(request, 'tool.html', context=variables_dict)
 
 
 def nikto(request):
-    variables_dict["tool_used"] = "nikto.html"
+    variables_dict["tool_used"] = "nikto"
     variables_dict.update({})
     return render(request, 'tool.html', context=variables_dict)
 
