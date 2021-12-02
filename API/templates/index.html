@@ -3,11 +3,23 @@
 
 {% load static %}
 
+{% url 'homepage' as home %}
+{% url 'contact' as contact %}
+{% url 'login' as login %}
+{% url 'nmap' as nmap %}
+{% url 'hydra' as hydra %}
+{% url 'sherlock' as sherlock %}
+{% url 'theharvester' as theharvester %}
+{% url 'gobuster' as gobuster %}
+{% url 'nikto' as nikto %}
+
 
   <head>
   	<title>{{ our_app_name }}</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
 
@@ -25,14 +37,14 @@
 	<!--end of Navigation bar-->
 
 	<div class="container">
-		<div class="row justify-content-center">
+		<div class="row0 justify-content-center">
 			<div class="col-md-6 text-center mb-5">
 				<h2 class="heading-section">Run Basic Security Scans on the fly!</h2>
 			</div>
 		</div>
 	</div>
 
-	<div class="row2">
+	<div class="row">
 			<div class="col-md-6 col-lg-4">
 			<section class="type-description">
 				<div class="title" id="title1">Active Recon</div>

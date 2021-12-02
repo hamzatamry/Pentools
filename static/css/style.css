@@ -482,7 +482,7 @@ pre {
   margin-right: auto;
   margin-left: auto; }
 
-.row {
+.row0 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -8283,8 +8283,9 @@ h1, h2, h3, h4, h5,
       outline: none !important; }
 
 /* Added styles */
-.row2 {
+.row {
     display : flex;
+    margin : 10px;
 }
 
 .type-description {
@@ -8417,6 +8418,45 @@ button, input, optgroup, select, textarea {
 select:not(:-internal-list-box) {
     overflow: visible !important;
 }
+
+input {
+    -webkit-writing-mode: horizontal-tb !important;
+    font-style: ;
+    font-variant-ligatures: ;
+    font-variant-caps: ;
+    font-variant-numeric: ;
+    font-variant-east-asian: ;
+    font-weight: ;
+    font-stretch: ;
+    font-size: ;
+    font-family: ;
+    text-rendering: auto;
+    color: -internal-light-dark(black, white);
+    letter-spacing: normal;
+    word-spacing: normal;
+    line-height: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+    appearance: auto;
+    -webkit-rtl-ordering: logical;
+    cursor: text;
+    background-color: -internal-light-dark(rgb(255, 255, 255), rgb(59, 59, 59));
+    margin: 0em;
+    padding: 1px 2px;
+    /*border-width: 2px;
+    border-style: inset;
+    border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+    border-image: initial;
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial; */
+}
+
 select {
     -webkit-writing-mode: horizontal-tb !important;
     font-style: ;
@@ -8454,4 +8494,28 @@ select {
 }
 .btn-primary {
     padding : 5px;
+}
+
+.dropdown-menu label {
+  display: block;
+}
+
+.scantarget {
+    width : 100%;
+}
+
+.threads {
+    width : 40%;
+}
+
+.terminal-style {
+    clear: both;
+    padding: 19px 30px 52px;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 15px 20px 0 rgb(35 38 57 / 30%);
+    box-shadow: 0 15px 20px 0 rgb(35 38 57 / 30%);
+    background: #232639;
+    margin: 20px 50px;
+    color: #bcd327;
+    word-break: break-all;
 }
