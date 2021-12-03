@@ -3,17 +3,22 @@ from django.http import HttpResponse, JsonResponse
 from django.views import View
 from django.core.handlers.wsgi import WSGIRequest
 from django.contrib.auth.models import User
+from django.core.files import File
 from django.contrib.auth import authenticate, login, logout
+from django.db import transaction
 from .models import *
 from urllib.parse import parse_qs
+import datetime
 import re
 import os
+import uuid
+
 
 
 variables_dict = {"our_app_name": "PenTools", "tool_used": "nmap"}
 
 
-class Registration(View):
+class RegistrationView(View):
 
     def post(self, request: WSGIRequest, *args, **kwargs):
 
@@ -53,7 +58,7 @@ class Registration(View):
         })))
 
 
-class Authentication(View):
+class AuthenticationView(View):
 
     def post(self, request, *args, **kwargs):
         try:
@@ -96,28 +101,28 @@ def logout_view(request):
     return render(request, 'login.html', context=variables_dict)
 
 
-class Scan(View):
+class ScanView(View):
     filter = re.compile(r"^(nmap|gobuster|sherlock)[\sa-zA-Z0-9\-./:\\]*$")
 
+    @transaction.atomic
     def get(self, request, *args, **kwargs):
 
         #   Retrieve query params
         queryparams = request.GET.dict()
 
         scan_tool = queryparams['scan_tool']
-
+        scan_target = ""
         command = ""
 
-        if not scan_tool:
-            pass
-
         if scan_tool == 'nmap':
-            command = "nmap" + " " + queryparams['scan_arguments']
-            command += " " + queryparams['scan_target']
+            scan_target = queryparams['scan_target']
+            command = "nmap" + " " + queryparams['scan_arguments'] + " " + scan_target
         elif scan_tool == 'gobuster':
             command = "gobuster dir" + " "
             for key, value in queryparams.items():
                 if key != "scan_tool":
+                    if key == '-u':
+                        scan_target = value
                     if key == '-w':
                         switcher = {
                             #   A modifier
@@ -128,13 +133,13 @@ class Scan(View):
                         command += key + " " + switcher.get(value) + " "
                     else:
                         command += key + " " + value + " "
-
         elif scan_tool == 'sherlock':
             command = "sherlock" + " "
 
         print(command)
 
         if request.user.is_authenticated:
+
             try:
 
                 if not command:
@@ -148,7 +153,32 @@ class Scan(View):
                         "message": "RCE detected"
                     })
                 else:
+                    #   retrieve user
+                    user: User = User.objects.get(id=request.user.pk)
+
+                    #   create in target model
+                    target: Target = Target.objects.create(target_url=scan_target)
+
+                    #   retrieve pentest_tool
+                    pentest_tool: PentestTool = PentestTool.objects.get(pentest_tool_name=scan_tool)
+
+                    scan_start_date = datetime.datetime.now()
                     command_result = os.popen(command).read()
+                    scan_end_date = datetime.datetime.now()
+
+                    #   Create a scanresult
+                    scan_result = None
+
+                    file_name = f"{uuid.uuid4().hex}" + ".txt"
+
+                    with open(f"uploads/{file_name}", "w") as file_stream:
+                        file_stream.write(command_result)
+
+                    with open(f'uploads/{file_name}', 'r+') as file_stream:  # The mode is r+ instead of r
+                        scan_result = ScanResult.objects.create(scan_result_file=File(file_stream))
+
+                    #   create a scan
+                    scan = Scan.objects.create(scan_start_date=scan_start_date, scan_end_date=scan_end_date, pentest_tool=pentest_tool, user=user, target=target, scan_result=scan_result)
 
                     return HttpResponse(f"{command_result}")
 
@@ -160,10 +190,6 @@ class Scan(View):
         else:
             return render(request, 'login.html', context=variables_dict)
         return HttpResponse("<h1>here")
-
-
-class ScanResult(View):
-    pass
 
 
 def index(request):
