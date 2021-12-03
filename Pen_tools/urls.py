@@ -16,13 +16,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, re_path
 from API import views
+from API.views import *
 
 
 urlpatterns = [
     re_path(r'^admin/', admin.site.urls),
     re_path(r'^$', views.index, name="homepage"),
     re_path(r'^contact/$', views.contact, name='contact'),
-    re_path(r'^login/$', views.login, name='login'),
+    re_path(r'^register/$', Registration.as_view(), name='register' ),
+    re_path(r'^login/$', Authentication.as_view(), name='login'),
+    re_path(r'^logout$', views.logout_view, name='logout'),
     re_path(r'^activerecon/nmap$', views.nmap, name='nmap'),
     re_path(r'^activerecon/hydra$', views.hydra, name='hydra'),
     re_path(r'passiverecon/sherlock$', views.sherlock, name='sherlock'),
