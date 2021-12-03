@@ -20,13 +20,18 @@ class Category(models.Model):
     ]
 
     category_id = models.AutoField(primary_key=True)
-    category_description = models.CharField(max_length=20, blank=False)
+    category_description = models.CharField(max_length=500, blank=False)
     category_type = models.CharField(max_length=4, choices=CATEGORY_TYPES, blank=False)
 
 
 class PentestTool(models.Model):
+    PENTEST_TOOLS = [
+        ('sherlock', 'sherlock'),
+         ('nmap', 'nmap'),
+        ('gobuster', 'gobuster')
+    ]
     pentest_tool_id = models.AutoField(primary_key=True)
-    pentest_tool_name = models.CharField(max_length=30, blank=False)
+    pentest_tool_name = models.CharField(max_length=30, blank=False, choices=PENTEST_TOOLS)
     pentest_tool_version = models.CharField(max_length=10, blank=False)
     pentest_tool_description = models.CharField(max_length=500, blank=False)
     categories = models.ManyToManyField(Category, blank=False)
