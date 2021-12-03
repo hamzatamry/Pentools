@@ -171,10 +171,10 @@ class ScanView(View):
 
                     file_name = f"{uuid.uuid4().hex}" + ".txt"
 
-                    with open(f"uploads/{file_name}", "w") as file_stream:
+                    with open(f"{file_name}", "w") as file_stream:
                         file_stream.write(command_result)
 
-                    with open(f'uploads/{file_name}', 'r+') as file_stream:  # The mode is r+ instead of r
+                    with open(f'{file_name}', 'r+') as file_stream:  # The mode is r+ instead of r
                         scan_result = ScanResult.objects.create(scan_result_file=File(file_stream))
 
                     #   create a scan

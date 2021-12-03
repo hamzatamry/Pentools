@@ -1,0 +1,27 @@
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-12-03 22:45 Paris, Madrid
+Nmap scan report for kubernetes.docker.internal (127.0.0.1)
+Host is up (0.0025s latency).
+
+PORT      STATE         SERVICE
+53/udp    closed        domain
+67/udp    closed        dhcps
+68/udp    closed        dhcpc
+69/udp    closed        tftp
+123/udp   closed        ntp
+135/udp   closed        msrpc
+137/udp   open|filtered netbios-ns
+138/udp   closed        netbios-dgm
+139/udp   closed        netbios-ssn
+161/udp   closed        snmp
+162/udp   closed        snmptrap
+445/udp   closed        microsoft-ds
+500/udp   open|filtered isakmp
+514/udp   closed        syslog
+520/udp   closed        route
+631/udp   closed        ipp
+1434/udp  closed        ms-sql-m
+1900/udp  open|filtered upnp
+4500/udp  open|filtered nat-t-ike
+49152/udp closed        unknown
+
+Nmap done: 1 IP address (1 host up) scanned in 4.51 seconds
