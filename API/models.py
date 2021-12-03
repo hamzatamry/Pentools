@@ -43,7 +43,7 @@ class Scan(models.Model):
     scan_end_date = models.DateTimeField(auto_now_add=True, blank=False)
 
     scan_result = models.OneToOneField(ScanResult,  on_delete=models.CASCADE, blank=False)
-    pentest_tool = models.OneToOneField(PentestTool, on_delete=models.CASCADE, blank=False)
+    pentest_tool = models.ForeignKey(PentestTool, on_delete=models.CASCADE, blank=False)
 
     user = models.ForeignKey(User, on_delete=models.CASCADE, blank=False)
     target = models.ForeignKey(Target, on_delete=models.CASCADE, blank=False)
