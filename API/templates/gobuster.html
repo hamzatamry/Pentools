@@ -1,0 +1,51 @@
+<form id="gobuster-form" action="/scan" method="post">
+			  <input type="hidden" name="steiken" value="ea1ef3317bbaa8a1a3920ad9c99650b2dfad15be">
+			  <input type="hidden" name="lang" id="scan_lang" value="en">
+              <div class="row">
+                <div class="instruction">
+					Enter domain name or IP address and select the scan method and wordlist. When your scan is finished the scan result will be displayed.
+				</div>
+			  </div>
+
+			  <div class="row">
+
+                <div class="target_block col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 ">
+                  <div class="form-block-inp">
+                    <input class="scantarget" type="text" name="scantarget" placeholder="Domain or IP" aria-label="Enter Domain name or IP address" value="" required="">
+                  </div>
+                </div>
+
+
+
+			  </div>
+
+			  <div class="row">
+                <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+                  <div class="form-block-sel">
+                    <select name="-w" id="wordlist" required="">
+                      <option value="" disabled selected>Wordlist size</option>
+					  <option value="1">small</option>
+                      <option value="2">medium</option>
+                      <option value="3">long</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 ">
+                  <div class="form-block-sel">
+                    <input class="threads" type="text" name="-t" placeholder="Threads" aria-label="Enter number of threads to use" value="">
+                  </div>
+                </div>
+
+                <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 ">
+                  <div class="form-block-sel">
+                    <input class="extensions" type="text" name="-x" placeholder="Specify files (json, js, php, ...)" aria-label="Enter number of threads to use" value="">
+                  </div>
+                </div>
+
+                <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2">
+                  <button class="btn-primary" type="submit">Scan host</button>
+                </div>
+              </div>
+
+</form>

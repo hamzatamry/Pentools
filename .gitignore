@@ -8,12 +8,10 @@ manage.py
 
 #   Pycharm
 .idea/*
+
 #   pycache folder and other py files
 __pycache__/
 __init__.py
 API/migrations/
 asgi.py
 wsgi.py
-
-templates/
-

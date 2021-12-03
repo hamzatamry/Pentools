@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+
+{% load static %}
+
+{% url 'homepage' as home %}
+{% url 'contact' as contact %}
+{% url 'login' as login %}
+{% url 'register' as register %}
+{% url 'nmap' as nmap %}
+{% url 'hydra' as hydra %}
+{% url 'sherlock' as sherlock %}
+{% url 'theharvester' as theharvester %}
+{% url 'gobuster' as gobuster %}
+{% url 'nikto' as nikto %}
+
+
+<head>
+  	<title>{{ our_app_name }}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+	</head>
+<body>
+    <!--Navigation bar-->
+	<div id="nav-placeholder">
+		{% include "nav.html" %}
+	</div>
+	<!--end of Navigation bar-->
+
+
+    <!-- Login -->
+    <div id="register-placeholder">
+        <section class="pt-5 pb-5 mt-0 align-items-center d-flex bg-dark" style="min-height: 100vh; background-size: cover; ">
+        <div class="container-fluid">
+          <div class="row  justify-content-center align-items-center d-flex-row text-center h-100">
+            <div class="col-12 col-md-4 col-lg-3   h-50 ">
+              <div class="card shadow">
+                <div class="card-body mx-auto">
+                  <h4 class="card-title mt-3 text-center">Create Account</h4>
+                  <p class="text-center">Get started with your free account</p>
+
+                  <form id="register-form" action="/register/" method="post">{% csrf_token %}
+                    <div class="form-group input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                      </div>
+                      <input name="username" class="form-control" placeholder="Username" type="text">
+                    </div>
+                    <div class="form-group input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                      </div>
+                      <input name="first_name" class="form-control" placeholder="First name" type="text">
+                    </div>
+                    <div class="form-group input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                      </div>
+                      <input name="last_name" class="form-control" placeholder="Last name" type="text">
+                    </div>
+                    <div class="form-group input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                      </div>
+                      <input name="email" class="form-control" placeholder="Email address" type="email">
+                    </div>
+                    <div class="form-group input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                      </div>
+                      <input name="password" class="form-control" placeholder="Create password" type="password">
+                    </div>
+                    <div class="form-group input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                      </div>
+                      <input class="form-control" placeholder="Repeat password" type="password">
+                    </div>
+                    <div class="form-group">
+                      <button type="submit" class="btn btn-primary btn-block"> Create Account </button>
+                    </div>
+                    <p class="text-center">Have an account?
+                      <a href="{{ login }}">Log In</a>
+                    </p>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </section>
+	</div>
+    <!-- End of login -->
+
+
+	<script src="{% static 'js/jquery.min.js' %}"></script>
+  	<script src="{% static 'js/popper.js' %}"></script>
+	<script src="{% static 'js/bootstrap.min.js' %}"></script>
+  	<script src="{% static 'js/main.js' %}"></script>
+
+	</body>
+</html>

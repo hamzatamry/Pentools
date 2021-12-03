@@ -22,6 +22,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-0@$cia*wjbr*edxuwz6=59xbe6-ua-9okrmhg=_f3yy4wv5=i^'
 
+#   Aymane
+#SECRET_KEY = 'django-insecure-)u8ma+5g3ytcutvcw1y$=f16(5m=*op+6-sd2=6_%r1h4!hyx+'
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -29,8 +32,6 @@ ALLOWED_HOSTS = ['*']
 
 
 # Application definition
-
-
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -46,7 +47,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    #'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -54,10 +55,13 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'Pen_tools.urls'
 
+# variable I created
+template_dir = os.path.join(BASE_DIR, "/API/templates")
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        'DIRS': [template_dir],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -82,8 +86,15 @@ DATABASES = {
         'NAME': 'Pen_tools',
         'USER': 'hamza',
         'PASSWORD': '123456789',
+#   Aymane
+"""
+        'NAME': 'pentools_db',
+        'USER': 'dbadmin',
+        'PASSWORD': 'dbadmin123',
+"""
         'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
         'PORT': '3306',
+
     }
 }
 
@@ -125,16 +136,16 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+#   STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media')
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static/'),
+    os.path.join(BASE_DIR, 'static'),
 ]
-
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-
-

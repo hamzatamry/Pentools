@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en"><head>
+  	<title></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,100,300,700" rel="stylesheet" type="text/css">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<link rel="stylesheet" href="/static/css/style.css">
+
+	</head>
+	<body>
+
+	<!--Navigation bar-->
+	<div id="nav-placeholder">
+		{% include "nav.html" %}
+	</div>
+	<!--end of Navigation bar-->
+
+
+	<div id="tool-form">
+		<h1>{{ tool_used|capfirst }}</h1>
+		{% with tool_used|add:".html" as form %}
+		{% include form %}
+		{% endwith %}
+	</div>
+
+	<div id="scan-result">
+		{% include 'result.html' %}
+	</div>
+
+
+    <script src="/static/js/jquery.min.js"></script>
+  	<script src="/static/js/popper.js"></script>
+	<script src="/static/js/bootstrap.min.js"></script>
+  	<script src="/static/js/main.js"></script>
+
+
+</body></html>
