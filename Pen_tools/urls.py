@@ -20,8 +20,8 @@ from API.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('API.urls')),
-    re_path(r'^$', index, name="homepage"),
-    re_path(r'^register/$', register, name='register' ),
+    re_path(r'^$', index, name='homepage'),
+    re_path(r'^register/$', register, name='register'),
     re_path(r'^login/$', login_view, name='login'),
     re_path(r'^logout$', logout_view, name='logout'),
     re_path(r'^contact/$', contact, name='contact'),

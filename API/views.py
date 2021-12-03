@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from django.views import View
 from django.core.handlers.wsgi import WSGIRequest
@@ -44,13 +44,14 @@ class Registration(View):
                 "message": "Internal server error"
             })))
 
-        return render(request, 'index.html', context=variables_dict.update(dict({
+        return redirect('/', variables_dict.update(dict({
             'id': user.id,
             'username': username,
             'email': email,
             'first_name': first_name,
             'last_name': last_name
         })))
+
 
 class Authentication(View):
 
@@ -72,7 +73,7 @@ class Authentication(View):
 
                 login(request, user)
                 
-                return render(request, 'index.html', context=variables_dict.update(dict({
+                return redirect('/', variables_dict.update(dict({
                     'id': user.id,
                     'username': user.username,
                     'email': user.email,
