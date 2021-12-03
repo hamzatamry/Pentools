@@ -13,11 +13,7 @@ import os
 
 variables_dict = {"our_app_name": "PenTools", "tool_used": "nmap"}
 
-
 class Registration(View):
-
-    def get(self, request, *args, **kwargs):
-        return render(request, 'register.html', context=variables_dict)
 
     def post(self, request: WSGIRequest, *args, **kwargs):
 
@@ -56,11 +52,7 @@ class Registration(View):
             'last_name': last_name
         })))
 
-
 class Authentication(View):
-
-    def get(self, request, *args, **kwargs):
-        return render(request, 'login.html', context=variables_dict)
 
     def post(self, request, *args, **kwargs):
         try:
@@ -82,7 +74,7 @@ class Authentication(View):
             if user is not None:
 
                 login(request, user)
-
+                
                 return render(request, 'index.html', context=variables_dict.update(dict({
                     'id': user.id,
                     'username': user.username,
@@ -173,14 +165,12 @@ def contact(request):
     return render(request, 'contact.html', context=variables_dict)
 
 
-''' def login(request):
-    variables_dict.update({})
+def login_view(request):
     return render(request, 'login.html', context=variables_dict)
 
 
 def register(request):
-    variables_dict.update({})
-    return render(request, 'register.html', context=variables_dict) '''
+    return render(request, 'register.html', context=variables_dict)
 
 
 def nmap(request):

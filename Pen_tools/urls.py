@@ -14,10 +14,21 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
 from API.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('API.urls'))
+    path('api/', include('API.urls')),
+    re_path(r'^$', index, name="homepage"),
+    re_path(r'^register/$', register, name='register' ),
+    re_path(r'^login/$', login_view, name='login'),
+    re_path(r'^logout$', logout_view, name='logout'),
+    re_path(r'^contact/$', contact, name='contact'),
+    re_path(r'^activerecon/nmap$', nmap, name='nmap'),
+    re_path(r'^activerecon/hydra$', hydra, name='hydra'),
+    re_path(r'passiverecon/sherlock$', sherlock, name='sherlock'),
+    re_path(r'passiverecon/theharvester$', theharvester, name='theharvester'),
+    re_path(r'enumeration/gobuster$', gobuster, name='gobuster'),
+    re_path(r'enumeration/nikto$', nikto, name='nikto'),
 ]
