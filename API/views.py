@@ -61,9 +61,6 @@ class Authentication(View):
             username = parsed_data['username'][0]
             password = parsed_data['password'][0]
 
-            print(username)
-            print(password)
-
             if not username or not password:
                 return render(request, 'login.html', context=variables_dict.update(dict({
                     "message": "Users must have a username and password"
