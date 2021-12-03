@@ -1,6 +1,5 @@
-<form id="nmap-form" action="/scan" method="post">
-			  <input type="hidden" name="steiken" value="ea1ef3317bbaa8a1a3920ad9c99650b2dfad15be">
-			  <input type="hidden" name="lang" id="scan_lang" value="en">
+<form id="nmap-form" action="/api/scan/" method="get">
+			<input hidden name="scan_tool" value="nmap" />
               <div class="row">
                 <div class="instruction">
 					Enter domain name or IP address and select the scan method. When your scan is finished the scan result will be displayed.
@@ -11,7 +10,7 @@
 
                 <div class="target_block col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 ">
                   <div class="form-block-inp">
-                    <input class="scantarget" type="text" name="scantarget" placeholder="Domain or IP" aria-label="Enter Domain name or IP address" value="" required="">
+                    <input class="scantarget" name="scan_target" type="text" placeholder="Domain or IP" aria-label="Enter Domain name or IP address" value="" required="">
                   </div>
                 </div>
 
@@ -21,26 +20,26 @@
 
                 <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
                   <div class="form-block-sel">
-                    <select name="scan_type" id="scan_type" required="">
-					  <option value="0" selected="">Fast Scan (nmap -F ...)</option>
-					  <option value="1">Port scan (nmap -sV -p 21,22,25,80,110,143,443,445 ...)</option>
-					  <option value="2">Scan OS information and Traceroute (nmap -A ...)</option>
-					  <option value="3">OS Detection (nmap -O ...)</option>
-					  <option value="4">Ping Scan (nmap -sP ...)</option>
-					  <option value="5">Scan All TCP ports (nmap -p- ...)</option>
-					  <option value="6">Scan All UDP ports (nmap -sU -p- ...)</option>
-  					  <option value="7">Firewall Detection (nmap -sA ...)</option>
-					  <option value="8">Scan the top 5 ports (nmap --top-ports 5 ...)</option>
-					  <option value="9">Scan the top 20 ports (nmap --top-ports 20 ...)</option>
-					  <option value="10">Scan the top 100 ports (nmap --top-ports 100 ...)</option>
-					  <option value="11">Scan top TCP ports (nmap --top-ports 20 -sT ...)</option>
-					  <option value="12">Scan top UDP ports (nmap --top-ports 20 -sU ...)</option>
-					  <option value="13">CVE-2021-41773 Path Traversal (nmap --script=http-vuln-cve-2021-41773 -p 80,443,631,7080,8080,8443,8088,5800,3872,8180,8000 ...)</option>
-					  <option value="14">Forward-confirmed Reverse DNS (nmap -sn -Pn --script fcrdns ...)</option>
-					  <option value="15">Detecting malware infections (nmap --top-ports 3 -sV --script=http-malware-host ...)</option>
-					  <option value="16">Banner grabber (nmap --script banner ...)</option>
-					  <option value="17">Display the HTTP headers (nmap --script http-headers -p 80,443,631,7080,8080,8443,8088,5800,3872,8180,8000 ...)</option>
-					  <option value="18">Check HTTP Vulnerabilities (nmap --script "http-vuln*" -p 80,443,631,7080,8080,8443,8088,5800,3872,8180,8000 ...)</option>
+                    <select name="scan_arguments" id="scan_arguments">
+					  <option value="-F" selected="">Fast Scan (nmap -F ...)</option>
+					  <option value="-p 21,22,25,80,110,143,443,445">Port scan (nmap -sV -p 21,22,25,80,110,143,443,445 ...)</option>
+					  <option value="-A">Scan OS information and Traceroute (nmap -A ...)</option>
+					  <option value="-O">OS Detection (nmap -O ...)</option>
+					  <option value="-sP">Ping Scan (nmap -sP ...)</option>
+					  <option value="-p-">Scan All TCP ports (nmap -p- ...)</option>
+					  <option value="-sU -p-">Scan All UDP ports (nmap -sU -p- ...)</option>
+  					  <option value="-sA">Firewall Detection (nmap -sA ...)</option>
+					  <option value="--top-ports 5">Scan the top 5 ports (nmap --top-ports 5 ...)</option>
+					  <option value="--top-ports 20">Scan the top 20 ports (nmap --top-ports 20 ...)</option>
+					  <option value="--top-ports 100">Scan the top 100 ports (nmap --top-ports 100 ...)</option>
+					  <option value="--top-ports 20 -sT">Scan top TCP ports (nmap --top-ports 20 -sT ...)</option>
+					  <option value="--top-ports 20 -sU">Scan top UDP ports (nmap --top-ports 20 -sU ...)</option>
+					  <option value="--script=http-vuln-cve-2021-41773 -p 80,443,631,7080,8080,8443,8088,5800,3872,8180,8000">CVE-2021-41773 Path Traversal (nmap --script=http-vuln-cve-2021-41773 -p 80,443,631,7080,8080,8443,8088,5800,3872,8180,8000 ...)</option>
+					  <option value="-sn -Pn --script fcrdns">Forward-confirmed Reverse DNS (nmap -sn -Pn --script fcrdns ...)</option>
+					  <option value="--top-ports 3 -sV --script=http-malware-host">Detecting malware infections (nmap --top-ports 3 -sV --script=http-malware-host ...)</option>
+					  <option value="--script banner">Banner grabber (nmap --script banner ...)</option>
+					  <option value="--script http-headers -p 80,443,631,7080,8080,8443,8088,5800,3872,8180,8000">Display the HTTP headers (nmap --script http-headers -p 80,443,631,7080,8080,8443,8088,5800,3872,8180,8000 ...)</option>
+					  <option value="--script http-vuln* -p 80,443,631,7080,8080,8443,8088,5800,3872,8180,8000">Check HTTP Vulnerabilities (nmap --script "http-vuln*" -p 80,443,631,7080,8080,8443,8088,5800,3872,8180,8000 ...)</option>
                     </select>
                   </div>
                 </div>

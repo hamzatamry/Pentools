@@ -6,12 +6,12 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from .models import *
 from urllib.parse import parse_qs
-import json
 import re
 import os
 
 
 variables_dict = {"our_app_name": "PenTools", "tool_used": "nmap"}
+
 
 class Registration(View):
 
@@ -52,6 +52,7 @@ class Registration(View):
             'last_name': last_name
         })))
 
+
 class Authentication(View):
 
     def post(self, request, *args, **kwargs):
@@ -89,38 +90,53 @@ class Authentication(View):
                 "message": "Internal Server Error"
             })))
 
+
 def logout_view(request):
     logout(request)
     return render(request, 'login.html', context=variables_dict)
 
+
 class Scan(View):
-    filter = re.compile(r"^(nmap|gobuster|sherlock)[\sa-zA-Z0-9\-./:]*$")
+    filter = re.compile(r"^(nmap|gobuster|sherlock)[\sa-zA-Z0-9\-./:\\]*$")
 
     def get(self, request, *args, **kwargs):
 
         #   Retrieve query params
         queryparams = request.GET.dict()
 
-        switcher = {
-            "nmap": 'nmap',
-            "gobuster": 'gobuster dir ',
-            "sherlock": 'sherlock',
-        }
+        scan_tool = queryparams['scan_tool']
 
-        command = switcher.get(queryparams['scan_tool'], "")
+        command = ""
 
-        for key, value in queryparams.items():
-            if key != "scan_tool" and key != "scan_target":
-                command += key + " " + value
+        if not scan_tool:
+            pass
 
-        command += " " + queryparams['scan_target']
+        if scan_tool == 'nmap':
+            command = "nmap" + " " + queryparams['scan_arguments']
+            command += " " + queryparams['scan_target']
+        elif scan_tool == 'gobuster':
+            command = "gobuster dir" + " "
+            for key, value in queryparams.items():
+                if key != "scan_tool":
+                    if key == '-w':
+                        switcher = {
+                            #   A modifier
+                            's': 'C:\\Users\\hamza\\Desktop\\directory-list-2.3-medium.txt',
+                            'm': 'C:\\Users\\hamza\\Desktop\\directory-list-2.3-medium.txt',
+                            'l': 'C:\\Users\\hamza\\Desktop\\directory-list-2.3-medium.txt'
+                        }
+                        command += key + " " + switcher.get(value) + " "
+                    else:
+                        command += key + " " + value + " "
+
+        elif scan_tool == 'sherlock':
+            command = "sherlock" + " "
 
         print(command)
 
         if request.user.is_authenticated:
             try:
 
-                print(command)
                 if not command:
                     return JsonResponse({
                         "message": "no command were specified"
@@ -142,15 +158,13 @@ class Scan(View):
                     "message": "Internal Server Error"
                 })
         else:
-            return JsonResponse({
-                "message": "Authentication failed"
-            })
-
+            return render(request, 'login.html', context=variables_dict)
         return HttpResponse("<h1>here")
 
 
 class ScanResult(View):
-    ScanResult
+    pass
+
 
 def index(request):
     variables_dict.update({})
