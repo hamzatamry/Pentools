@@ -180,7 +180,9 @@ class ScanView(View):
                     #   create a scan
                     scan = Scan.objects.create(scan_start_date=scan_start_date, scan_end_date=scan_end_date, pentest_tool=pentest_tool, user=user, target=target, scan_result=scan_result)
 
-                    return HttpResponse(f"{command_result}")
+                    return render(request, 'tool.html', context=variables_dict.update(dict({
+                        'scan_result': f"{command_result}"
+                })))
 
             except Exception as err:
                 print(err)
@@ -189,7 +191,6 @@ class ScanView(View):
                 })
         else:
             return render(request, 'login.html', context=variables_dict)
-        return HttpResponse("<h1>here")
 
 
 def index(request):
