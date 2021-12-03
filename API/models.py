@@ -9,7 +9,7 @@ class Target(models.Model):
 
 class ScanResult(models.Model):
     scan_result_id = models.AutoField(primary_key=True)
-    scan_result_file = models.FileField(upload_to='uploads/', blank=False, unique=True)
+    scan_result_file = models.FileField(blank=False, unique=True)
 
 
 class Category(models.Model):
