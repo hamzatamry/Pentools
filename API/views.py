@@ -182,7 +182,7 @@ class ScanView(View):
 
                     return render(request, 'tool.html', context=variables_dict.update(dict({
                         'scan_result': f"{command_result}"
-                })))
+                    })))
 
             except Exception as err:
                 print(err)
