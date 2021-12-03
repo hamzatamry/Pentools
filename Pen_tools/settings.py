@@ -20,10 +20,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-0@$cia*wjbr*edxuwz6=59xbe6-ua-9okrmhg=_f3yy4wv5=i^'
+# SECRET_KEY = 'django-insecure-0@$cia*wjbr*edxuwz6=59xbe6-ua-9okrmhg=_f3yy4wv5=i^'
 
 #   Aymane
-#SECRET_KEY = 'django-insecure-)u8ma+5g3ytcutvcw1y$=f16(5m=*op+6-sd2=6_%r1h4!hyx+'
+SECRET_KEY = 'django-insecure-)u8ma+5g3ytcutvcw1y$=f16(5m=*op+6-sd2=6_%r1h4!hyx+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -83,20 +83,28 @@ WSGI_APPLICATION = 'Pen_tools.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'Pen_tools',
-        'USER': 'hamza',
-        'PASSWORD': '123456789',
-#   Aymane
-"""
         'NAME': 'pentools_db',
         'USER': 'dbadmin',
         'PASSWORD': 'dbadmin123',
-"""
+
         'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
         'PORT': '3306',
 
     }
 }
+#   Hamza
+"""     'NAME': 'Pen_tools',
+        'USER': 'hamza',
+        'PASSWORD': '123456789',
+""" 
+
+#   Aymane
+"""     'NAME': 'pentools_db',
+        'USER': 'dbadmin',
+        'PASSWORD': 'dbadmin123',
+
+"""
+
 
 
 # Password validation

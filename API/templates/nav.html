@@ -25,26 +25,26 @@
 				  <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Active recon</a>
 				  <div class="dropdown-menu" aria-labelledby="dropdown04">
 					<a class="dropdown-item" href="{{ nmap }}">Nmap</a>
-					<a class="dropdown-item" href="{{ hydra }}">Hydra</a>
+					<!-- <a class="dropdown-item" href="{{ hydra }}">Hydra</a> -->
               		</div>
 				</li>
 				<li class="nav-item dropdown">
 				  <a class="nav-link dropdown-toggle" href="#" id="dropdown05" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Passive recon</a>
 				  <div class="dropdown-menu" aria-labelledby="dropdown05">
 					<a class="dropdown-item" href="{{ sherlock }}">Sherlock</a>
-					<a class="dropdown-item" href="{{ theharvester }}">TheHarvester</a>
+					<!-- <a class="dropdown-item" href="{{ theharvester }}">TheHarvester</a> -->
               		</div>
 				</li>
 				<li class="nav-item dropdown">
 				  <a class="nav-link dropdown-toggle" href="#" id="dropdown06" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Enumeration</a>
 				  <div class="dropdown-menu" aria-labelledby="dropdown06">
 					<a class="dropdown-item" href="{{ gobuster }}">GoBuster</a>
-					<a class="dropdown-item" href="{{ nikto }}">Nikto</a>
+					<!-- <a class="dropdown-item" href="{{ nikto }}">Nikto</a> -->
               		</div>
 				</li>
 	          <li class="nav-item"><a href="{{ contact }}" class="nav-link">Contact</a></li>
 			  {% if user.is_authenticated %}
-				<li class="nav-item dropdown">
+				<li class="nav-item cta dropdown">
 				  <a class="nav-link dropdown-toggle" href="#" id="dropdown99" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ username }}</a>
 				  <div class="dropdown-menu" aria-labelledby="dropdown99">
 					<a class="dropdown-item" href="{{ logout }}">logout</a>
