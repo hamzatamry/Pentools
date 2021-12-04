@@ -136,9 +136,9 @@ class ScanView(View):
                     if key == '-w':
                         switcher = {
                             #   A modifier
-                            's': 'C:\\Users\\hamza\\Desktop\\directory-list-2.3-medium.txt',
-                            'm': 'C:\\Users\\hamza\\Desktop\\directory-list-2.3-medium.txt',
-                            'l': 'C:\\Users\\hamza\\Desktop\\directory-list-2.3-medium.txt'
+                            's': '/usr/share/wordlists/dirbuster/directory-list-1.0.txt',
+                            'm': '/usr/share/wordlists/dirbuster/directory-list-2.3-small.txt',
+                            'l': '/usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt'
                         }
                         command += key + " " + switcher.get(value) + " "
                     else:
