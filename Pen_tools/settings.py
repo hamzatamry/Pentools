@@ -83,13 +83,11 @@ WSGI_APPLICATION = 'Pen_tools.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'Pen_tools',
-        'USER': 'hamza',
-        'PASSWORD': '123456789',
-
-        'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
+        'NAME': 'pentools_db',
+        'USER': 'dbadmin',
+        'PASSWORD': 'dbadmin123',
+        'HOST': 'localhost',
         'PORT': '3306',
-
     }
 }
 #   Hamza

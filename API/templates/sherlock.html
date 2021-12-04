@@ -1,5 +1,5 @@
-<form id="sherlock-form" action="/scan" method="post">
-			  <input type="hidden" name="lang" id="scan_lang" value="en">
+<form id="sherlock-form" action="/api/scan" method="get">
+			  <input hidden name="scan_tool" value="sherlock" />
               <div class="row">
                 <div class="instruction">
 					Enter one or multiple usernames (separated by ",") to find them across social platforms. When your scan is finished the scan result will be displayed.
@@ -10,7 +10,7 @@
 
                 <div class="target_block col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 ">
                   <div class="form-block-inp">
-                    <input class="scantarget" type="text" name="scantarget" placeholder="Username(s)" aria-label="Enter one or multiple usernames" value="" required="">
+                    <input class="scantarget" type="text" name="scan_target" placeholder="Username(s)" aria-label="Enter one or multiple usernames" value="" required="">
                   </div>
                 </div>
 

@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
+from django.template import loader
+from django.urls import reverse
 from django.views import View
 from django.core.handlers.wsgi import WSGIRequest
 from django.contrib.auth.models import User
@@ -12,8 +14,6 @@ import datetime
 import re
 import os
 import uuid
-
-
 
 variables_dict = {"our_app_name": "PenTools", "tool_used": "nmap"}
 
@@ -33,9 +33,10 @@ class RegistrationView(View):
             last_name = parsed_data['last_name'][0]
 
             if not username or not password or not email or not first_name or not last_name:
-                return render(request, 'register.html', context=variables_dict.update(dict({
+                variables_dict.update(dict({
                     "message": "Users must have a username, a password, an email, ..."
-                })))
+                }))
+                return render(request, 'register.html', context=variables_dict)
 
             user = User.objects.create_user(username=username, password=password)
             user.email = email
@@ -45,17 +46,20 @@ class RegistrationView(View):
 
         except Exception as err:
             print(err)
-            return render(request, 'register.html', context=variables_dict.update(dict({
+            variables_dict.update(dict({
                 "message": "Internal server error"
-            })))
+            }))
 
-        return redirect('/', variables_dict.update(dict({
+            return render(request, 'register.html', context=variables_dict)
+
+        variables_dict.update(dict({
             'id': user.id,
             'username': username,
             'email': email,
             'first_name': first_name,
             'last_name': last_name
-        })))
+        }))
+        return redirect('/', variables_dict)
 
 
 class AuthenticationView(View):
@@ -68,32 +72,37 @@ class AuthenticationView(View):
             password = parsed_data['password'][0]
 
             if not username or not password:
-                return render(request, 'login.html', context=variables_dict.update(dict({
+                variables_dict.update(dict({
                     "message": "Users must have a username and password"
-                })))
+                }))
+                return render(request, 'login.html', context=variables_dict)
 
             user = authenticate(username=username, password=password)
 
             if user is not None:
 
                 login(request, user)
-                
-                return redirect('/', variables_dict.update(dict({
+
+                variables_dict.update(dict({
                     'id': user.id,
                     'username': user.username,
                     'email': user.email,
                     'first_name': user.first_name,
                     'last_name': user.last_name
-                })))
+                }))
+
+                return redirect('/', variables_dict)
             else:
-                return render(request, 'login.html', context=variables_dict.update(dict({
+                variables_dict.update(dict({
                     "message": "Authentication failed"
-                })))
+                }))
+                return render(request, 'login.html', context=variables_dict)
         except Exception as err:
             print(err)
-            return render(request, 'login.html', context=variables_dict.update(dict({
+            variables_dict.update(dict({
                 "message": "Internal Server Error"
-            })))
+            }))
+            return render(request, 'login.html', context=variables_dict)
 
 
 def logout_view(request):
@@ -111,6 +120,7 @@ class ScanView(View):
         queryparams = request.GET.dict()
 
         scan_tool = queryparams['scan_tool']
+
         scan_target = ""
         command = ""
 
@@ -144,7 +154,7 @@ class ScanView(View):
 
                 if not command:
                     return JsonResponse({
-                        "message": "no command were specified"
+                        "scan_result": "no command were specified"
                     })
 
                 #   Filtrer la commande (contre les RCE)
@@ -178,17 +188,25 @@ class ScanView(View):
                         scan_result = ScanResult.objects.create(scan_result_file=File(file_stream))
 
                     #   create a scan
-                    scan = Scan.objects.create(scan_start_date=scan_start_date, scan_end_date=scan_end_date, pentest_tool=pentest_tool, user=user, target=target, scan_result=scan_result)
-
-                    return render(request, 'tool.html', context=variables_dict.update(dict({
+                    scan = Scan.objects.create(scan_start_date=scan_start_date, scan_end_date=scan_end_date,
+                                               pentest_tool=pentest_tool, user=user, target=target,
+                                               scan_result=scan_result)
+                    #   updating variables dictionary to pass it with the rendered result page
+                    variables_dict["tool_used"] = scan_tool
+                    variables_dict.update(dict({
                         'scan_result': f"{command_result}"
-                    })))
+                    }))
+                    return redirect('tool', tool_used=scan_tool)
+                    # return render(request, 'tool.html', context=variables_dict)
 
             except Exception as err:
                 print(err)
-                return JsonResponse({
-                    "message": "Internal Server Error"
-                })
+                variables_dict["tool_used"] = scan_tool
+                variables_dict.update(dict({
+                    "scan_result": "Internal Server Error"
+                }))
+                return redirect('tool', tool_used=scan_tool)
+                # return render(request, 'tool.html', context=variables_dict)
         else:
             return render(request, 'login.html', context=variables_dict)
 
@@ -211,39 +229,6 @@ def register(request):
     return render(request, 'register.html', context=variables_dict)
 
 
-def nmap(request):
-    variables_dict["tool_used"] = "nmap"
-    variables_dict.update({})
+def tool(request, tool_used):
+    variables_dict["tool_used"] = tool_used
     return render(request, 'tool.html', context=variables_dict)
-
-
-def hydra(request):
-    variables_dict["tool_used"] = "hydra"
-    variables_dict.update({})
-    return render(request, 'tool.html', context=variables_dict)
-
-
-def sherlock(request):
-    variables_dict["tool_used"] = "sherlock"
-    variables_dict.update({})
-    return render(request, 'tool.html', context=variables_dict)
-
-
-def theharvester(request):
-    variables_dict["tool_used"] = "theharvester"
-    variables_dict.update({})
-    return render(request, 'tool.html', context=variables_dict)
-
-
-def gobuster(request):
-    variables_dict["tool_used"] = "gobuster"
-    variables_dict.update({})
-    return render(request, 'tool.html', context=variables_dict)
-
-
-def nikto(request):
-    variables_dict["tool_used"] = "nikto"
-    variables_dict.update({})
-    return render(request, 'tool.html', context=variables_dict)
-
-
