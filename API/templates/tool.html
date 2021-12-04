@@ -1,5 +1,19 @@
 <!doctype html>
-<html lang="en"><head>
+<html lang="en">
+
+{% load static %}
+
+{% url 'homepage' as home %}
+{% url 'contact' as contact %}
+{% url 'login' as login %}
+{% url 'nmap' as nmap %}
+{% url 'hydra' as hydra %}
+{% url 'sherlock' as sherlock %}
+{% url 'theharvester' as theharvester %}
+{% url 'gobuster' as gobuster %}
+{% url 'nikto' as nikto %}
+
+<head>
   	<title>{{ our_app_name }}</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -12,14 +26,14 @@
 
 	<link rel="stylesheet" href="/static/css/style.css">
 
-	</head>
-	<body>
+</head>
+<body>
 
-	<!--Navigation bar-->
+	<!--Navigation bar
 	<div id="nav-placeholder">
 		{% include "nav.html" %}
 	</div>
-	<!--end of Navigation bar-->
+	end of Navigation bar
 
 
 	<div id="tool-form">
@@ -31,13 +45,13 @@
 
 	<div id="scan-result">
 		{% include 'result.html' with scan_result=scan_result %}
-	</div>
+	</div>-->
 
 
-    <script src="/static/js/jquery.min.js"></script>
-  	<script src="/static/js/popper.js"></script>
-	<script src="/static/js/bootstrap.min.js"></script>
-  	<script src="/static/js/main.js"></script>
+  	<script src="{% static 'js/jquery.min.js' %}"></script>
+  	<script src="{% static 'js/popper.js' %}"></script>
+	<script src="{% static 'js/bootstrap.min.js' %}"></script>
+  	<script src="{% static 'js/main.js' %}"></script>
 
-
-</body></html>
+	</body>
+</html>
