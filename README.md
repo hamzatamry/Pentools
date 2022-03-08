@@ -120,16 +120,3 @@ DATABASES = {
         }
     }
 ```
-##  Installing Django-Rest Framework
-
-1.  We run this command to install django rest frameword (make sure you have activated the virtual environement)
-```
-pip install djangorestframework
-```
-2. Then you should add it to INSTALLED_APPS in settings.py
-```py
-INSTALLED_APPS = [
-	...
-	'rest_framework'
-]
-```
